@@ -56,7 +56,7 @@ public class HardwareMap {
 
         FR = hwMap.get(DcMotor.class, "FR");
         FR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        FR.setDirection(DcMotorSimple.Direction.FORWARD);
+        FR.setDirection(DcMotorSimple.Direction.REVERSE);
 
         BL = hwMap.get(DcMotor.class, "BL");
         BL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -64,10 +64,10 @@ public class HardwareMap {
 
         BR = hwMap.get(DcMotor.class, "BR");
         BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        BR.setDirection(DcMotorSimple.Direction.FORWARD);
+        BR.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //Encoders
-        leftEncoder = hwMap.get(DcMotor.class, "FL");
+        leftEncoder = hwMap.get(DcMotor.class, "FR");
         leftEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftEncoder.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
