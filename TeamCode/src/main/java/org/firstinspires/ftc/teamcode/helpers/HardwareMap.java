@@ -80,5 +80,47 @@ public class HardwareMap {
         middleEncoder.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
+    /**
+     * Init TweetyBird
+     */
+    public void initTweetyBird() {
+        tweetyBird = new TweetyBirdProcessor.Builder()
+                //Setting opmode
+                .setOpMode(opMode)
+
+                //Hardware Config
+                .setFrontLeftMotor(FL)
+                .setFrontRightMotor(FR)
+                .setBackLeftMotor(BL)
+                .setBackRightMotor(BR)
+
+                .setLeftEncoder(leftEncoder)
+                .setRightEncoder(rightEncoder)
+                .setMiddleEncoder(middleEncoder)
+
+                .flipLeftEncoder(true)
+                .flipRightEncoder(true)
+                .flipMiddleEncoder(true)
+
+                .setInchesBetweenSideEncoders(12+5.0/8.0)
+                .setInchesToBackEncoder(-3)
+
+                .setTicksPerEncoderRotation(8192)
+                .setEncoderWheelRadius(1)
+
+                //Other Config
+                .setMinSpeed(0.25)
+                .setMaxSpeed(0.8)
+                .setStartSpeed(0.4)
+                .setSpeedModifier(0.04)
+                .setStopForceSpeed(0.1)
+
+                .setCorrectionOverpowerDistance(5)
+                .setDistanceBuffer(1)
+                .setRotationBuffer(8)
+
+                .build();
+    }
+
 
 }
