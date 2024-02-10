@@ -66,6 +66,7 @@ public class HardwareMap {
         BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         BR.setDirection(DcMotorSimple.Direction.REVERSE);
 
+        /* TODO: Fix when actually setup
         //Encoders
         leftEncoder = hwMap.get(DcMotor.class, "FR");
         leftEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -77,7 +78,7 @@ public class HardwareMap {
 
         middleEncoder = hwMap.get(DcMotor.class, "BR");
         middleEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        middleEncoder.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        middleEncoder.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);*/
     }
 
     /**
