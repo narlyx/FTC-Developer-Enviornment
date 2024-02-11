@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.helpers.HardwareMap;
 
-@Autonomous(name = "TweetyBird Hold Position", group = "y")
+@Autonomous(name = "TweetyBird Hold Position", group = "d")
 //@Disabled //Do not forget to remove this line to make it active
 public class TweetyHold extends LinearOpMode {
 

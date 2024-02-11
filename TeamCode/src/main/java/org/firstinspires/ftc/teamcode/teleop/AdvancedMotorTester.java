@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.helpers.HardwareMap;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-@TeleOp(name = "Motor Tester", group = "z")
+@TeleOp(name = "Motor Tester", group = "d")
 //@Disabled //Do not forget to remove this line to make it active
 public class AdvancedMotorTester extends LinearOpMode {
 
