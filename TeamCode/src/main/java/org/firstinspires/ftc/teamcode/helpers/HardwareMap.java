@@ -187,5 +187,23 @@ public class HardwareMap {
         ftcDashboard.startCameraStream(cameraStream,0);
     }
 
+    public void breakPoint(String caption) {
+        boolean proceedControl = false;
+
+        while (opMode.opModeIsActive()&&!proceedControl) {
+            proceedControl = opMode.gamepad1.a||opMode.gamepad2.a;
+
+            opMode.telemetry.addLine("You have reached a break point, please press A to proceed.");
+            opMode.telemetry.addData("Caption",caption);
+            opMode.telemetry.update();
+        }
+
+        opMode.telemetry.addLine("Proceeding");
+        opMode.telemetry.update();
+    }
+    public void breakPoint() {
+        breakPoint("N/A");
+    }
+
 
 }
