@@ -51,7 +51,7 @@ public class HardwareMap {
     public CameraName cameras;
 
     public VisionPortal visionPortal;
-    private AprilTagProcessor aprilTag;
+    public AprilTagProcessor aprilTag;
     public BlankCameraStream cameraStream;
 
 
