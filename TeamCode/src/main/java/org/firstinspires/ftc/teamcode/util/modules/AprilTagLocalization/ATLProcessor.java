@@ -4,6 +4,9 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
+import java.util.Dictionary;
+import java.util.Hashtable;
+
 import dev.narlyx.ftc.tweetybird.TweetyBirdProcessor;
 
 /**
@@ -26,12 +29,14 @@ public class ATLProcessor {
      */
     protected TweetyBirdProcessor tweetyBirdProcessor;
 
+    Dictionary<Integer,Tag> tags;
+
     /**
      * Internal method that is called right after the builder is "built"
      */
     private void runtime() {
         ATLWorker workerThread = new ATLWorker(this);
-        workerThread.run();
+        workerThread.start();
     }
 
     /**
@@ -43,10 +48,11 @@ public class ATLProcessor {
         this.opMode = builder.opMode;
         this.aprilTagProcessor = builder.aprilTagProcessor;
         this.tweetyBirdProcessor = builder.tweetyBirdProcessor;
+        this.tags = builder.tags;
 
         //Ensure all required imports have been set
-        if ( this.opMode==null || this.aprilTagProcessor==null || this.tweetyBirdProcessor==null ) {
-            return;
+        if ( this.opMode==null || this.aprilTagProcessor==null || this.tweetyBirdProcessor==null || this.tags.size()==0 ) {
+            //return;
         }
 
         //Starting
@@ -73,6 +79,13 @@ public class ATLProcessor {
         private TweetyBirdProcessor tweetyBirdProcessor  = null;
         public ATLProcessor.Builder setTweetyBirdProcessor(TweetyBirdProcessor tweetyBirdProcessor) {
             this.tweetyBirdProcessor = tweetyBirdProcessor;
+            return this;
+        }
+
+
+        private Dictionary<Integer,Tag> tags = new Hashtable<>();
+        public ATLProcessor.Builder addTag(int id, double x, double y, double z) {
+            tags.put(id,new Tag(x,y,z));
             return this;
         }
 

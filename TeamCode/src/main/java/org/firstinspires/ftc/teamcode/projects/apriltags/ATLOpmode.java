@@ -23,18 +23,23 @@ public class ATLOpmode extends LinearOpMode {
     public void runOpMode() {
         //Initialize
         robot.initGeneral();
+        robot.initTweetyBird();
         robot.initVision();
+
+        robot.tweetyBird.disengage();
 
         //Starting ATL
         ATLProcessor atlProcessor = new ATLProcessor.Builder()
                 .setOpMode(this)
                 .setAprilTagProcessor(robot.aprilTag)
+                .setTweetyBirdProcessor(robot.tweetyBird)
+                .addTag(007,0,0,0)
                 .build();
 
         waitForStart();
         //Run
 
-        robot.breakPoint();
+        while (opModeIsActive());
 
     }
 }

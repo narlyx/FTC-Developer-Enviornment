@@ -103,11 +103,8 @@ public class HardwareMap {
         middleEncoder.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //Cameras
-        frontCam = hwMap.get(WebcamName.class, "Webcam 1");
-        backCam = hwMap.get(WebcamName.class, "Webcam 2");
-
-        cameras = ClassFactory.getInstance()
-                .getCameraManager().nameForSwitchableCamera(frontCam,backCam);
+        frontCam = hwMap.get(WebcamName.class, "Webcam 2");
+        backCam = hwMap.get(WebcamName.class, "Webcam 1");
 
 
     }
@@ -172,15 +169,12 @@ public class HardwareMap {
         //Vision portal
         visionPortal = new VisionPortal.Builder()
                 //Setting Camera to the switchable camera
-                .setCamera(cameras)
+                .setCamera(frontCam)
                 //Adding Processors
                 .addProcessors(cameraStream,aprilTag)
                 //Resolution
                 .setCameraResolution(new Size(640,480))
                 .build();
-
-        //Set Active Camera
-        visionPortal.setActiveCamera(frontCam);
 
         //Stream Camera to dashboard
         ftcDashboard.startCameraStream(cameraStream,0);
