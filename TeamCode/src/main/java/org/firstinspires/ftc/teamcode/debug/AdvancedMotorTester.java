@@ -1,10 +1,10 @@
-package org.firstinspires.ftc.teamcode.teleop.debug;
+package org.firstinspires.ftc.teamcode.debug;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.teamcode.helpers.HardwareMap;
+import org.firstinspires.ftc.teamcode.util.HardwareMap;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

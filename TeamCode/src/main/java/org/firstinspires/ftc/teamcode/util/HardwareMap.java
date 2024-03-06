@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.helpers;
+package org.firstinspires.ftc.teamcode.util;
 
 import android.util.Size;
 
@@ -17,7 +17,6 @@ import org.firstinspires.ftc.teamcode.vision.BlankCameraStream;
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagGameDatabase;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
-import org.openftc.apriltag.AprilTagDetection;
 
 /**
  * The purpose of this class is to globally provide hardware configuration + other variables

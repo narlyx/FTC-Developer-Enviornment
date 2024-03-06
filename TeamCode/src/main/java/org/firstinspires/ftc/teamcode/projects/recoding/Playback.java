@@ -1,22 +1,18 @@
-package org.firstinspires.ftc.teamcode.autonomous;
+package org.firstinspires.ftc.teamcode.projects.recoding;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.helpers.HardwareMap;
-import org.opencv.core.Mat;
+import org.firstinspires.ftc.teamcode.util.HardwareMap;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.Hashtable;
 import java.util.Scanner;
 
 @Autonomous(name = "Playback", group = "b")
-//@Disabled //Do not forget to remove this line to make it active
+@Disabled //Do not forget to remove this line to make it active
 public class Playback extends LinearOpMode {
 
     /**

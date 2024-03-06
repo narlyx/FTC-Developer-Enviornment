@@ -1,12 +1,13 @@
 package org.firstinspires.ftc.teamcode.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.helpers.HardwareMap;
+import org.firstinspires.ftc.teamcode.util.HardwareMap;
 
 @Autonomous(name = "Go Right", group = "a")
-//@Disabled //Do not forget to remove this line to make it active
+@Disabled //Do not forget to remove this line to make it active
 public class GoRight extends LinearOpMode {
 
     /**

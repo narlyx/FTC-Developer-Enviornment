@@ -1,12 +1,9 @@
 package org.firstinspires.ftc.teamcode.teleop;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.teamcode.helpers.HardwareMap;
+import org.firstinspires.ftc.teamcode.util.HardwareMap;
 
 @TeleOp(name = "Basic Driver Control", group = "a")
 public class BasicDriverControl extends LinearOpMode {

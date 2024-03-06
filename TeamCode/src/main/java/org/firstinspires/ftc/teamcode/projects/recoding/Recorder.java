@@ -1,20 +1,19 @@
-package org.firstinspires.ftc.teamcode.teleop;
+package org.firstinspires.ftc.teamcode.projects.recoding;
 
 import android.os.Environment;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.helpers.HardwareMap;
+import org.firstinspires.ftc.teamcode.util.HardwareMap;
 
 import java.io.File;
 import java.io.FileWriter;
 
 @TeleOp(name = "Recorder", group = "b")
-//@Disabled //Do not forget to remove this line to make it active
+@Disabled //Do not forget to remove this line to make it active
 public class Recorder extends LinearOpMode {
 
     /**

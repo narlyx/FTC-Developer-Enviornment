@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.helpers.templates;
+package org.firstinspires.ftc.teamcode.templates;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;

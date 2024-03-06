@@ -1,14 +1,14 @@
-package org.firstinspires.ftc.teamcode.autonomous;
+package org.firstinspires.ftc.teamcode.templates;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.helpers.HardwareMap;
+import org.firstinspires.ftc.teamcode.util.HardwareMap;
 
-@Autonomous(name = "TweetyBird Hold Position", group = "d")
-//@Disabled //Do not forget to remove this line to make it active
-public class TweetyHold extends LinearOpMode {
+@Autonomous(name = "Change Me", group = "a")
+@Disabled //Do not forget to remove this line to make it active
+public class TemplateAuto extends LinearOpMode {
 
     /**
      * HardwareMap Reference
@@ -22,15 +22,10 @@ public class TweetyHold extends LinearOpMode {
     public void runOpMode() {
         //Initialize
         robot.initGeneral();
-        robot.initTweetyBird();
-        robot.tweetyBird.disengage();
 
         waitForStart();
         //Run
-        robot.tweetyBird.engage();
 
-        while (opModeIsActive());
-        robot.tweetyBird.stop();
 
     }
 }
