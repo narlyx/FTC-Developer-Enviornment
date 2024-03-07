@@ -26,20 +26,27 @@ public class ATLOpmode extends LinearOpMode {
         robot.initTweetyBird();
         robot.initVision();
 
-        robot.tweetyBird.disengage();
+        //robot.tweetyBird.disengage();
+        robot.tweetyBird.engage();
 
         //Starting ATL
         ATLProcessor atlProcessor = new ATLProcessor.Builder()
                 .setOpMode(this)
                 .setAprilTagProcessor(robot.aprilTag)
                 .setTweetyBirdProcessor(robot.tweetyBird)
-                .addTag(007,0,0,0)
+                .addTag(007,0,20,0)
+                .addTag(8,1,20,0)
                 .build();
 
         waitForStart();
         //Run
 
-        while (opModeIsActive());
+        while (opModeIsActive()) {
+            if (gamepad1.a) {
+                atlProcessor.scan();
+            }
+        }
 
+        robot.tweetyBird.stop();
     }
 }

@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.util.modules.AprilTagLocalization;
 
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
@@ -29,14 +30,23 @@ public class ATLProcessor {
      */
     protected TweetyBirdProcessor tweetyBirdProcessor;
 
+    private ATLWorker workerThread;
+
     Dictionary<Integer,Tag> tags;
 
-    /**
-     * Internal method that is called right after the builder is "built"
-     */
-    private void runtime() {
-        ATLWorker workerThread = new ATLWorker(this);
+    public FtcDashboard ftcDashboard = FtcDashboard.getInstance();
+
+    public void scan() {
+        workerThread.scan();
+    }
+
+    public void turnOnAutoRun() {
+        workerThread.auto = true;
         workerThread.start();
+    }
+
+    public void turnOffAutoRun() {
+        workerThread.auto = false;
     }
 
     /**
@@ -55,8 +65,7 @@ public class ATLProcessor {
             //return;
         }
 
-        //Starting
-        runtime();
+        workerThread = new ATLWorker(this);
     }
 
     /**
@@ -85,7 +94,7 @@ public class ATLProcessor {
 
         private Dictionary<Integer,Tag> tags = new Hashtable<>();
         public ATLProcessor.Builder addTag(int id, double x, double y, double z) {
-            tags.put(id,new Tag(x,y,z));
+            tags.put(id,new Tag(x,y,Math.toRadians(z)));
             return this;
         }
 
