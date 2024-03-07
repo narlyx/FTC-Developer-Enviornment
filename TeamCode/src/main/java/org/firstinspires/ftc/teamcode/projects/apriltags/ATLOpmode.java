@@ -34,7 +34,7 @@ public class ATLOpmode extends LinearOpMode {
                 .setOpMode(this)
                 .setAprilTagProcessor(robot.aprilTag)
                 .setTweetyBirdProcessor(robot.tweetyBird)
-                .addTag(007,0,20,0)
+                .addTag(7,-1,20,0)
                 .addTag(8,1,20,0)
                 .build();
 
