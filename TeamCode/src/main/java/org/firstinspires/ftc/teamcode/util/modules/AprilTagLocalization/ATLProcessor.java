@@ -32,8 +32,6 @@ public class ATLProcessor {
 
     private ATLWorker workerThread;
 
-    Dictionary<Integer,Tag> tags;
-
     public FtcDashboard ftcDashboard = FtcDashboard.getInstance();
 
     public void scan() {
@@ -58,14 +56,14 @@ public class ATLProcessor {
         this.opMode = builder.opMode;
         this.aprilTagProcessor = builder.aprilTagProcessor;
         this.tweetyBirdProcessor = builder.tweetyBirdProcessor;
-        this.tags = builder.tags;
 
         //Ensure all required imports have been set
-        if ( this.opMode==null || this.aprilTagProcessor==null || this.tweetyBirdProcessor==null || this.tags.size()==0 ) {
+        if ( this.opMode==null || this.aprilTagProcessor==null || this.tweetyBirdProcessor==null) {
             //return;
         }
 
         workerThread = new ATLWorker(this);
+
     }
 
     /**
@@ -88,13 +86,6 @@ public class ATLProcessor {
         private TweetyBirdProcessor tweetyBirdProcessor  = null;
         public ATLProcessor.Builder setTweetyBirdProcessor(TweetyBirdProcessor tweetyBirdProcessor) {
             this.tweetyBirdProcessor = tweetyBirdProcessor;
-            return this;
-        }
-
-
-        private Dictionary<Integer,Tag> tags = new Hashtable<>();
-        public ATLProcessor.Builder addTag(int id, double x, double y, double z) {
-            tags.put(id,new Tag(x,y,Math.toRadians(z)));
             return this;
         }
 

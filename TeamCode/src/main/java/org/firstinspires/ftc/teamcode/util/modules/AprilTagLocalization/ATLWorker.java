@@ -4,6 +4,7 @@ import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 
 import org.checkerframework.checker.units.qual.A;
+import org.firstinspires.ftc.robotcore.external.matrices.VectorF;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.opencv.core.Point3;
 
@@ -28,7 +29,7 @@ public class ATLWorker extends Thread {
             scan();
 
             try {
-                sleep(100);
+                sleep(1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -38,68 +39,68 @@ public class ATLWorker extends Thread {
     protected void scan() {
         TelemetryPacket packet = new TelemetryPacket();
 
-        //Gathering a list of detected tags
-        List<AprilTagDetection> currentDetections = processor.aprilTagProcessor.getDetections();
-
         //Estimated Positions
-        List<Vector3> estimatedPositions = new ArrayList<>();
+        List<VectorF> estimatedPositions = new ArrayList<>();
 
-        //Parsing list
-        for ( AprilTagDetection detection : currentDetections ) {
-            Tag tag = processor.tags.get(detection.id);
-            if ( tag!=null && detection.metadata != null ) {
+        //Run 5 times
+        for (int i = 0; i<5; i++) {
+            //Gathering a list of detected tags
+            List<AprilTagDetection> currentDetections = processor.aprilTagProcessor.getDetections();
 
-                double tagX = tag.getX();
-                double tagY = tag.getY();
-                double tagZ = tag.getZ();
+            //Parsing list
+            for ( AprilTagDetection detection : currentDetections ) {
+                if ( detection.metadata != null ) {
 
-                double distance = detection.ftcPose.y;
-                double lateralDistance = detection.ftcPose.x;
-                double yawDistance = Math.toRadians(detection.ftcPose.yaw);
+                    if (true) {
+                        double tagX = detection.metadata.fieldPosition.get(0);
+                        double tagY = detection.metadata.fieldPosition.get(1);
+                        double tagZ = Math.toRadians(-90);
 
-                double camX = tagX - ( (distance * Math.sin((tagZ + yawDistance) )) + (lateralDistance * Math.sin((tagZ + yawDistance) + 90)) );
-                double camY = tagY - ( (distance * Math.cos((tagZ + yawDistance) )) + (lateralDistance * Math.cos((tagZ + yawDistance)  + 90)) );
-                double camZ = tagZ + yawDistance;
+                        double distance = detection.ftcPose.y;
+                        double lateralDistance = detection.ftcPose.x;
+                        double yawDistance = Math.toRadians(detection.ftcPose.yaw);
 
-                double robotX = camX;
-                double robotY = camY;
-                double robotZ = camZ;
+                        double camX = tagX - ( (distance * Math.sin((tagZ + yawDistance) )) + (lateralDistance * Math.sin((tagZ + yawDistance) + 90)) );
+                        double camY = tagY - ( (distance * Math.cos((tagZ + yawDistance) )) + (lateralDistance * Math.cos((tagZ + yawDistance)  + 90)) );
+                        double camZ = tagZ + yawDistance;
 
-                estimatedPositions.add(new Vector3(robotX,robotY,robotZ));
+                        float robotX = (float)camX;
+                        float robotY = (float)camY;
+                        float robotZ = (float)camZ;
 
-                packet.fieldOverlay()
-                        .setFill("Blue")
-                        //.fillCircle(detection.ftcPose.x+processor.tweetyBirdProcessor.getX(),detection.ftcPose.y+processor.tweetyBirdProcessor.getY(),1);
-                        .fillCircle(tagX,tagY,1);
-            }
+                        estimatedPositions.add(new VectorF(robotX,robotY,robotZ));
 
-            if ( tag==null && detection.metadata != null ) {
-                packet.fieldOverlay()
-                        .setFill("Black")
-                        .fillCircle(detection.ftcPose.x+processor.tweetyBirdProcessor.getX(),detection.ftcPose.y+processor.tweetyBirdProcessor.getY(),1);
+                        packet.fieldOverlay()
+                                .setFill("Blue")
+                                //.fillCircle(detection.ftcPose.x+processor.tweetyBirdProcessor.getX(),detection.ftcPose.y+processor.tweetyBirdProcessor.getY(),1);
+                                .fillCircle(tagX,tagY,1);
+                    }
+
+                }
             }
         }
+
 
         if (estimatedPositions.size()>0) {
             double estimatedX = 0;
             double estimatedY = 0;
             double estimatedZ = 0;
 
-            for ( Vector3 vector3 : estimatedPositions ) {
-                estimatedX += vector3.getX();
-                estimatedY += vector3.getY();
-                estimatedZ += vector3.getZ();
+            for ( VectorF vectorF : estimatedPositions ) {
+                estimatedX += vectorF.get(0);
+                estimatedY += vectorF.get(1);
+                estimatedZ += vectorF.get(2);
             }
 
             estimatedX = estimatedX/estimatedPositions.size();
             estimatedY = estimatedY/estimatedPositions.size();
             estimatedZ = estimatedZ/estimatedPositions.size();
 
-            processor.tweetyBirdProcessor.resetTo(estimatedX,estimatedY,estimatedZ);
+            processor.tweetyBirdProcessor.resetTo(estimatedY,-estimatedX,estimatedZ);
 
-            packet.put("Robot X",estimatedX);
-            packet.put("Robot Y",estimatedY);
-            packet.put("Robot Z",estimatedZ);
+            packet.put("Robot X",processor.tweetyBirdProcessor.getX());
+            packet.put("Robot Y",processor.tweetyBirdProcessor.getY());
+            packet.put("Robot Z",processor.tweetyBirdProcessor.getZ());
 
             packet.fieldOverlay()
                     .setFill("Green")

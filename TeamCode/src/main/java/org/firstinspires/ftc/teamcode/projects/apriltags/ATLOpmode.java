@@ -34,16 +34,24 @@ public class ATLOpmode extends LinearOpMode {
                 .setOpMode(this)
                 .setAprilTagProcessor(robot.aprilTag)
                 .setTweetyBirdProcessor(robot.tweetyBird)
-                .addTag(7,-1,20,0)
-                .addTag(8,1,20,0)
                 .build();
 
         waitForStart();
         //Run
 
+        //atlProcessor.turnOnAutoRun();
+        robot.tweetyBird.straightLineTo(-38,45,-90);
+
+        boolean debounce = false;
+
         while (opModeIsActive()) {
-            if (gamepad1.a) {
+            if (gamepad1.a && !debounce) {
+                //debounce = true;
                 atlProcessor.scan();
+            }
+
+            if (!gamepad1.a && debounce) {
+                debounce = false;
             }
         }
 

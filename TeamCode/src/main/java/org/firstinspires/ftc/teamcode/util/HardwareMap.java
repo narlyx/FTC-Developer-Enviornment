@@ -4,15 +4,21 @@ import android.util.Size;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import dev.narlyx.ftc.tweetybird.TweetyBirdProcessor;
+
+import com.qualcomm.hardware.bosch.BHI260IMU;
+import com.qualcomm.hardware.bosch.BNO055IMUNew;
+import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.IMU;
+import com.qualcomm.robotcore.hardware.ImuOrientationOnRobot;
 
-import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.CameraName;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.Quaternion;
 import org.firstinspires.ftc.teamcode.vision.BlankCameraStream;
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagGameDatabase;
@@ -53,6 +59,9 @@ public class HardwareMap {
     public VisionPortal visionPortal;
     public AprilTagProcessor aprilTag;
     public BlankCameraStream cameraStream;
+
+    //Sensors
+    public IMU imu = null;
 
 
     /**
@@ -106,6 +115,13 @@ public class HardwareMap {
         frontCam = hwMap.get(WebcamName.class, "Webcam 2");
         backCam = hwMap.get(WebcamName.class, "Webcam 1");
 
+        //Sensors
+        imu = hwMap.get(IMU.class,"imu");
+        imu.initialize(new IMU.Parameters(new RevHubOrientationOnRobot(
+                RevHubOrientationOnRobot.LogoFacingDirection.UP,
+                RevHubOrientationOnRobot.UsbFacingDirection.FORWARD
+        )));
+
 
     }
 
@@ -157,6 +173,7 @@ public class HardwareMap {
     public void initVision() {
         //Creating Processors
         cameraStream = new BlankCameraStream(opMode.telemetry);
+
         aprilTag = new AprilTagProcessor.Builder()
                 .setDrawAxes(true)
                 .setDrawCubeProjection(false)
@@ -196,6 +213,28 @@ public class HardwareMap {
     }
     public void breakPoint() {
         breakPoint("N/A");
+    }
+
+    public double getIMUZ() {
+        return imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
+    }
+
+    public void resetIMUZ() {
+        imu.resetYaw();
+    }
+
+    public void setMovementPower(double axial, double lateral, double yaw, double speed) {
+        //Creating Individual Power for Each Motor
+        double frontLeftPower  = ((axial + lateral + yaw) * speed);
+        double frontRightPower = ((axial - lateral - yaw) * speed);
+        double backLeftPower   = ((axial - lateral + yaw) * speed);
+        double backRightPower  = ((axial + lateral - yaw) * speed);
+
+        //Set Motor Power
+        FL.setPower(frontLeftPower);
+        FR.setPower(frontRightPower);
+        BL.setPower(backLeftPower);
+        BR.setPower(backRightPower);
     }
 
 
