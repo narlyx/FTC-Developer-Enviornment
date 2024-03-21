@@ -1,12 +1,9 @@
-package org.firstinspires.ftc.teamcode.util.modules.AprilTagLocalization;
+package org.firstinspires.ftc.teamcode.projects.atl;
 
-import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 
-import org.checkerframework.checker.units.qual.A;
 import org.firstinspires.ftc.robotcore.external.matrices.VectorF;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
-import org.opencv.core.Point3;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +51,7 @@ public class ATLWorker extends Thread {
                     if (true) {
                         double tagX = detection.metadata.fieldPosition.get(0);
                         double tagY = detection.metadata.fieldPosition.get(1);
-                        double tagZ = Math.toRadians(-90);
+                        double tagZ = Math.toRadians(detection.metadata.fieldPosition.get(2));
 
                         double distance = detection.ftcPose.y;
                         double lateralDistance = detection.ftcPose.x;
@@ -96,7 +93,7 @@ public class ATLWorker extends Thread {
             estimatedY = estimatedY/estimatedPositions.size();
             estimatedZ = estimatedZ/estimatedPositions.size();
 
-            processor.tweetyBirdProcessor.resetTo(estimatedY,-estimatedX,estimatedZ);
+            processor.tweetyBirdProcessor.resetTo(estimatedX,estimatedY,estimatedZ);
 
             packet.put("Robot X",processor.tweetyBirdProcessor.getX());
             packet.put("Robot Y",processor.tweetyBirdProcessor.getY());

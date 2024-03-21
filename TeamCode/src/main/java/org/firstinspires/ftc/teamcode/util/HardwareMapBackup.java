@@ -3,16 +3,11 @@ package org.firstinspires.ftc.teamcode.util;
 import android.util.Size;
 
 import com.acmerobotics.dashboard.FtcDashboard;
-import dev.narlyx.ftc.tweetybird.TweetyBirdProcessor;
-
-import com.qualcomm.hardware.bosch.BHI260IMU;
-import com.qualcomm.hardware.bosch.BNO055IMUNew;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.IMU;
-import com.qualcomm.robotcore.hardware.ImuOrientationOnRobot;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.CameraName;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -22,15 +17,16 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Quaternion;
 import org.firstinspires.ftc.teamcode.vision.BlankCameraStream;
 import org.firstinspires.ftc.vision.VisionPortal;
-import org.firstinspires.ftc.vision.apriltag.AprilTagGameDatabase;
 import org.firstinspires.ftc.vision.apriltag.AprilTagLibrary;
 import org.firstinspires.ftc.vision.apriltag.AprilTagMetadata;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
+import dev.narlyx.ftc.tweetybird.TweetyBirdProcessor;
+
 /**
  * The purpose of this class is to globally provide hardware configuration + other variables
  */
-public class HardwareMap {
+public class HardwareMapBackup {
     /**
      * Opmode Reference
      */
@@ -71,7 +67,7 @@ public class HardwareMap {
     /**
      * Constructor
      */
-    public HardwareMap(LinearOpMode importedOpmode) {
+    public HardwareMapBackup(LinearOpMode importedOpmode) {
         //Pull OpMode
         opMode = importedOpmode;
     }

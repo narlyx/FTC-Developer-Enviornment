@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.projects.debug;
+package org.firstinspires.ftc.teamcode.projects.motortester;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.util.HardwareMap;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-@TeleOp(name = "Motor Tester", group = "d")
+@TeleOp(name = "Motor Tester", group = "z")
 //@Disabled //Do not forget to remove this line to make it active
 public class AdvancedMotorTester extends LinearOpMode {
 

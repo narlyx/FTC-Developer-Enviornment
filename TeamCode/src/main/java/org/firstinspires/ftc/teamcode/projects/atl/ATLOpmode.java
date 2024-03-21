@@ -1,11 +1,9 @@
-package org.firstinspires.ftc.teamcode.projects.apriltags;
+package org.firstinspires.ftc.teamcode.projects.atl;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.util.HardwareMap;
-import org.firstinspires.ftc.teamcode.util.modules.AprilTagLocalization.ATLProcessor;
 
 @Autonomous(name = "ATL Testing", group = "a")
 //@Disabled //Do not forget to remove this line to make it active
@@ -40,7 +38,6 @@ public class ATLOpmode extends LinearOpMode {
         //Run
 
         //atlProcessor.turnOnAutoRun();
-        robot.tweetyBird.straightLineTo(-38,45,-90);
 
         boolean debounce = false;
 

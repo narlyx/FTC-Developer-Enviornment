@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.autonomous;
+package org.firstinspires.ftc.teamcode.projects;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -6,9 +6,9 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.util.HardwareMap;
 
-@Autonomous(name = "Go Left", group = "a")
+@Autonomous(name = "Change Me", group = "a")
 @Disabled //Do not forget to remove this line to make it active
-public class GoLeft extends LinearOpMode {
+public class TemplateAuto extends LinearOpMode {
 
     /**
      * HardwareMap Reference
@@ -22,17 +22,10 @@ public class GoLeft extends LinearOpMode {
     public void runOpMode() {
         //Initialize
         robot.initGeneral();
-        robot.initTweetyBird();
-        robot.tweetyBird.disengage();
 
         waitForStart();
         //Run
-        robot.tweetyBird.engage();
 
-        robot.tweetyBird.straightLineTo(-32,0,0);
-
-        while (opModeIsActive());
-        robot.tweetyBird.stop();
 
     }
 }
